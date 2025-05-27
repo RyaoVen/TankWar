@@ -1,4 +1,5 @@
 package Object;
+import java.awt.*;
 import java.math.*;
 
 import static java.lang.Math.abs;
@@ -14,7 +15,7 @@ public class GameObject {
     protected int Height;
 
     //颜色
-    protected String Color;
+    protected Color color;
 
     //物理量
     protected int Speed;
@@ -34,11 +35,52 @@ public class GameObject {
     }
 
     String TouchWithObject(GameObject object) {
-        if (abs(this.Axis_X - object.Axis_X) > (this.Width + object.Width)){
+        if (abs((this.Axis_X+this.Width/2)-(object.Axis_X+this.Width/2))<(this.Width+object.Width)/2){
             if (this.Axis_X>object.Axis_X)return "TouchObjectRight";
             if (this.Axis_X<object.Axis_X)return "TouchObjectLeft";
+        };
+        if (abs((this.Axis_Y+this.Height/2)-(object.Axis_Y+this.Height/2))<(this.Height+object.Height)/2){
+            if (this.Axis_Y>object.Axis_Y)return "TouchObjectBottom";
+            if (this.Axis_Y<object.Axis_Y)return "TouchObjectTop";
         };
         return null;
     }
 
+    //传参函数
+
+
+    public int getAxis_X(){
+        return this.Axis_X;
+    }
+    public int getAxis_Y(){
+        return this.Axis_Y;
+    }
+    public int getWidth(){
+        return this.Width;
+    }
+    public int getHeight(){
+        return this.Height;
+    }
+    public Color getColor(){
+        return this.color;
+    }
+
+
+    //移动函数
+
+    public void MoveUp(){
+        this.Axis_Y-=Speed;
+    }
+    public void MoveDown(){
+        this.Axis_Y+=Speed;
+    }
+    public void MoveLeft(){
+        this.Axis_X-=Speed;
+    }
+    public void MoveRight(){
+        this.Axis_X+=Speed;
+    }
+    public int getOthers(){
+        return 0;
+    }
 }
