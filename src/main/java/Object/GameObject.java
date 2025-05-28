@@ -83,4 +83,39 @@ public class GameObject {
     public int getOthers(){
         return 0;
     }
+
+    //设参函数群
+
+    public void SetDirection(String Direction){
+        this.Direction = Direction;
+    }
+
+    public void SetSpeed(int Speed){
+        this.Speed = Speed;
+    }
+
+    public void SetWidth(int Width){
+        this.Width = Width;
+    }
+
+    public void SetHeight(int Height){
+        this.Height = Height;
+    }
+
+    public void setAxis_X(int Axis_X){
+        this.Axis_X = Axis_X;
+    }
+
+    public void setAxis_Y(int Axis_Y){
+        this.Axis_Y = Axis_Y;
+    }
+
+    public void SetColor(Color color){
+        this.color = color;
+    }
+
+    public void SetIsLive(boolean IsLive){
+        this.IsLive = IsLive;
+    }
+
 }

@@ -37,4 +37,18 @@ public class BulletObject extends GameObject{
     public int getReLoadingTime(){
         return ReLoadingTime;
     }
+
+    //
+
+    public void SetDamage(int damage){
+        Damage = damage;
+    }
+
+    public void SetExplosionRange(int range){
+        ExplosionRange = range;
+    }
+
+    public void SetReLoadingTime(int time){
+        ReLoadingTime = time;
+    }
 }

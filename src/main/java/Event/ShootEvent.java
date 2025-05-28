@@ -5,7 +5,7 @@ import Rendering.ObjectRendering;
 import javax.swing.*;
 
 public class ShootEvent {
-   private BulletObject bullet;
+   private BulletGiving bulletGiving;
    private TankObject tank;
    private JRootPane rootPane;
 
@@ -14,9 +14,9 @@ public class ShootEvent {
 
 
 
-   ShootEvent(BulletObject bullet, TankObject tank, JRootPane rootPane) {
+   ShootEvent(BulletGiving bulletGiving, TankObject tank, JRootPane rootPane) {
        this.rootPane = rootPane;
-       this.bullet = bullet;
+       this.bulletGiving = bulletGiving;
        this.tank = tank;
        IsLoaded = true;
 
@@ -40,7 +40,7 @@ public class ShootEvent {
 
     private void ReLoading(){
         try {
-            Thread.sleep(bullet.getReLoadingTime());
+            Thread.sleep(bulletGiving.BulletGet().getReLoadingTime());
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -54,12 +54,12 @@ public class ShootEvent {
        * 实例化一个子弹类的渲染类
        * 循环执行子弹的飞行直到爆炸
        */
-        BulletObject Bullet = new BulletObject();
+        BulletObject Bullet = bulletGiving.BulletGet();
         ObjectRendering bullet = new ObjectRendering(Bullet);
         Bullet.ObjectRenderingSet(bullet);
         while (!Bullet.BulletMove(tank).equals("BOOM"));
 
-        //TODO ： 完善子弹的生命周期：1.解决传入的tank对象 2.解决伤害的结算 3.完成供弹类，完善弹药类的参数注入
+        //TODO ： 1.完善子弹的生命周期 2.解决伤害的结算
 
    }
 
