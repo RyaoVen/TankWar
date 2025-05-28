@@ -5,6 +5,7 @@ import Rendering.ObjectRendering;
 public class BulletObject extends GameObject{
     private int Damage;
     private int ExplosionRange;
+    private int ReLoadingTime;
 
     private ObjectRendering objectRendering;
 
@@ -24,8 +25,16 @@ public class BulletObject extends GameObject{
         return null;
     }
 
+    public void ObjectRenderingSet(ObjectRendering objectRendering){
+        this.objectRendering = objectRendering;
+    }
+
     @Override
     public int getOthers(){
         return Damage;
+    }
+
+    public int getReLoadingTime(){
+        return ReLoadingTime;
     }
 }

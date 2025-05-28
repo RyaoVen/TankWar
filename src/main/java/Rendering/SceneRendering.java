@@ -22,4 +22,5 @@ public class SceneRendering extends JPanel {
         setBackground(color);
         setVisible(true);
     }
+    //TODO：完成场景的设计： 1.主界面 2.战斗界面
 }

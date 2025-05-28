@@ -47,4 +47,6 @@ public class TankObject extends GameObject{
     public int getOthers(){
         return Health;
     }
+
+    //TODO： 1.完善坦克伤害的结算机制 2.完善坦克被摧毁的死亡机制 3.完善游戏的结算机制
 }
