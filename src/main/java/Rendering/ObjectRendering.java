@@ -10,8 +10,9 @@ public class ObjectRendering extends SceneRendering{
 
     protected GameObject object;
 
-    public ObjectRendering(GameObject object){
+    public ObjectRendering(GameObject object, JFrame frame) {
         super(object.getWidth(),object.getHeight());
+        this.frame = frame;
         this.object = object;
     }
     @Override

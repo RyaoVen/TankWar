@@ -8,16 +8,20 @@ public class ShootEvent {
    private BulletGiving bulletGiving;
    private TankObject tank;
    private JRootPane rootPane;
+   private TankObject ai;
+   private JFrame frame;
 
 
    private boolean IsLoaded;
 
 
 
-   ShootEvent(BulletGiving bulletGiving, TankObject tank, JRootPane rootPane) {
-       this.rootPane = rootPane;
+   ShootEvent(BulletGiving bulletGiving, TankObject tank,TankObject ai ,JFrame frame) {
+       this.rootPane = frame.getRootPane();
        this.bulletGiving = bulletGiving;
        this.tank = tank;
+       this.ai = ai;
+       this.frame = frame;
        IsLoaded = true;
 
        KeyBoardBand();
@@ -55,9 +59,12 @@ public class ShootEvent {
        * 循环执行子弹的飞行直到爆炸
        */
         BulletObject Bullet = bulletGiving.BulletGet();
-        ObjectRendering bullet = new ObjectRendering(Bullet);
+        Bullet.setAxis_X(tank.getAxis_X());
+        Bullet.setAxis_Y(tank.getAxis_Y());
+        ObjectRendering bullet = new ObjectRendering(Bullet,frame);
+        bullet.init();
         Bullet.ObjectRenderingSet(bullet);
-        while (!Bullet.BulletMove(tank).equals("BOOM"));
+        while (!Bullet.BulletMove(ai).equals("BOOM"));
 
         //TODO ： 1.完善子弹的生命周期 2.解决伤害的结算
 

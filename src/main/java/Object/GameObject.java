@@ -26,24 +26,55 @@ public class GameObject {
 
 
     //函数
-    String TouchWithScene(int SceneWidth, int SceneHeight) {
-        if ((this.Axis_X + this.Width) > SceneWidth) return "TouchSceneRight";
-        if ((this.Axis_Y + this.Height) > SceneHeight) return "TouchSceneBottom";
-        if (this.Axis_X < 0) return "TouchSceneLeft";
-        if (this.Axis_Y < 0) return "TouchSceneTop";
-        return null;
+    public String TouchWithScene(int sceneWidth, int sceneHeight) {
+        StringBuilder result = new StringBuilder();
+
+        // 精确检测所有边界（使用>=和<=）
+        if (this.Axis_X + this.Width >= sceneWidth) {
+            result.append("TouchSceneRight");
+        }
+        if (this.Axis_Y + this.Height >= sceneHeight) {
+            if (result.length() > 0) result.append("|");
+            result.append("TouchSceneBottom");
+        }
+        if (this.Axis_X <= 0) {
+            if (result.length() > 0) result.append("|");
+            result.append("TouchSceneLeft");
+        }
+        if (this.Axis_Y <= 0) {
+            if (result.length() > 0) result.append("|");
+            result.append("TouchSceneTop");
+        }
+
+        return result.length() > 0 ? result.toString() : "NO";
     }
 
-    String TouchWithObject(GameObject object) {
-        if (abs((this.Axis_X+this.Width/2)-(object.Axis_X+this.Width/2))<(this.Width+object.Width)/2){
-            if (this.Axis_X>object.Axis_X)return "TouchObjectRight";
-            if (this.Axis_X<object.Axis_X)return "TouchObjectLeft";
-        };
-        if (abs((this.Axis_Y+this.Height/2)-(object.Axis_Y+this.Height/2))<(this.Height+object.Height)/2){
-            if (this.Axis_Y>object.Axis_Y)return "TouchObjectBottom";
-            if (this.Axis_Y<object.Axis_Y)return "TouchObjectTop";
-        };
-        return null;
+    public String TouchWithObject(GameObject object) {
+        // 计算两物体在X和Y方向上的重叠量
+        int overlapX = Math.max(0, Math.min(this.Axis_X + this.Width, object.Axis_X + object.Width)
+                - Math.max(this.Axis_X, object.Axis_X));
+        int overlapY = Math.max(0, Math.min(this.Axis_Y + this.Height, object.Axis_Y + object.Height)
+                - Math.max(this.Axis_Y, object.Axis_Y));
+
+        // 如果没有重叠，返回NO
+        if (overlapX == 0 || overlapY == 0) {
+            return "NO";
+        }
+
+        // 判断主要碰撞方向（重叠量较小的方向）
+        if (overlapX < overlapY) {
+            if (this.Axis_X < object.Axis_X) {
+                return "TouchObjectRight";
+            } else {
+                return "TouchObjectLeft";
+            }
+        } else {
+            if (this.Axis_Y < object.Axis_Y) {
+                return "TouchObjectBottom";
+            } else {
+                return "TouchObjectTop";
+            }
+        }
     }
 
     //传参函数

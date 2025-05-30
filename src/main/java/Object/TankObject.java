@@ -8,30 +8,30 @@ public class TankObject extends GameObject{
 
     //坦克移动方法
 
-    public String TankMoveDown(GameObject object){
-        if (!(TouchWithScene(Width,Height).equals("TouchSceneBottom"))&&!(TouchWithObject(object).equals("TouchObjectBottom"))){
+    public String TankMoveDown(GameObject object,int sceneWidth, int sceneHeight){
+        if (!(TouchWithScene(sceneWidth,sceneHeight).contains("TouchSceneBottom"))&&!(TouchWithObject(object).equals("TouchObjectBottom"))){
             MoveDown();
             objectRendering.ReSet();
         }else return "Stop";
         return null;
     }
-    public String TankMoveUp(GameObject object){
-        if (!(TouchWithScene(Width,Height).equals("TouchSceneTop"))&&!(TouchWithObject(object).equals("TouchObjectTop"))){
+    public String TankMoveUp(GameObject object,int sceneWidth, int sceneHeight){
+        if (!(TouchWithScene(sceneWidth,sceneHeight).contains("TouchSceneTop"))&&!(TouchWithObject(object).equals("TouchObjectTop"))){
             MoveUp();
             objectRendering.ReSet();
         }else return "Stop";
         return null;
 
     }
-    public String TankMoveLeft(GameObject object){
-        if (!(TouchWithScene(Width,Height).equals("TouchSceneLeft"))&&!(TouchWithObject(object).equals("TouchObjectLeft"))){
+    public String TankMoveLeft(GameObject object,int sceneWidth, int sceneHeight){
+        if (!(TouchWithScene(sceneWidth,sceneHeight).contains("TouchSceneLeft"))&&!(TouchWithObject(object).equals("TouchObjectLeft"))){
             MoveLeft();
             objectRendering.ReSet();
         }else return "Stop";
         return null;
     }
-    public String TankMoveRight(GameObject object){
-        if (!(TouchWithScene(Width,Height).equals("TouchSceneRight"))&&!(TouchWithObject(object).equals("TouchObjectRight"))){
+    public String TankMoveRight(GameObject object,int sceneWidth, int sceneHeight){
+        if (!(TouchWithScene(sceneWidth,sceneHeight).contains("TouchSceneRight"))&&!(TouchWithObject(object).equals("TouchObjectRight"))){
             MoveRight();
         objectRendering.ReSet();
         }else return "Stop";
@@ -50,6 +50,10 @@ public class TankObject extends GameObject{
 
     public void SetHealth(int health){
         Health = health;
+    }
+
+    public void ObjectRenderingSet(ObjectRendering objectRendering){
+        this.objectRendering = objectRendering;
     }
 
     //TODO： 1.完善坦克伤害的结算机制 2.完善坦克被摧毁的死亡机制 3.完善游戏的结算机制
