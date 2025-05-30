@@ -8,7 +8,7 @@ public class TankGiving {
     public TankGiving() {
         tank = new TankObject();
         tank.SetHealth(100);
-        tank.SetSpeed(10);
+        tank.SetSpeed(1);
         tank.SetColor(Color.green);
         tank.SetHeight(50);
         tank.SetWidth(50);

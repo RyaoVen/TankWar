@@ -72,7 +72,7 @@ public class MoveEvent {
         }
 
         // 创建新定时器并启动
-        timer = new Timer(50, action);
+        timer = new Timer(5, action);
         timer.start();
         directionTimers.put(direction, timer);
     }
