@@ -11,6 +11,7 @@ public class TankObject extends GameObject{
     public String TankMoveDown(GameObject object,int sceneWidth, int sceneHeight){
         if (!(TouchWithScene(sceneWidth,sceneHeight).contains("TouchSceneBottom"))&&!(TouchWithObject(object).equals("TouchObjectBottom"))){
             MoveDown();
+            this.Direction = "Down";
             objectRendering.ReSet();
         }else return "Stop";
         return null;
@@ -18,6 +19,7 @@ public class TankObject extends GameObject{
     public String TankMoveUp(GameObject object,int sceneWidth, int sceneHeight){
         if (!(TouchWithScene(sceneWidth,sceneHeight).contains("TouchSceneTop"))&&!(TouchWithObject(object).equals("TouchObjectTop"))){
             MoveUp();
+            this.Direction = "Up";
             objectRendering.ReSet();
         }else return "Stop";
         return null;
@@ -26,6 +28,7 @@ public class TankObject extends GameObject{
     public String TankMoveLeft(GameObject object,int sceneWidth, int sceneHeight){
         if (!(TouchWithScene(sceneWidth,sceneHeight).contains("TouchSceneLeft"))&&!(TouchWithObject(object).equals("TouchObjectLeft"))){
             MoveLeft();
+            this.Direction = "Left";
             objectRendering.ReSet();
         }else return "Stop";
         return null;
@@ -33,6 +36,7 @@ public class TankObject extends GameObject{
     public String TankMoveRight(GameObject object,int sceneWidth, int sceneHeight){
         if (!(TouchWithScene(sceneWidth,sceneHeight).contains("TouchSceneRight"))&&!(TouchWithObject(object).equals("TouchObjectRight"))){
             MoveRight();
+            this.Direction = "Right";
         objectRendering.ReSet();
         }else return "Stop";
         return null;
@@ -41,6 +45,9 @@ public class TankObject extends GameObject{
     //坦克销毁方法
     public void HealthChange(GameObject object){
         Health-=object.getOthers();
+        if(Health<=0){
+            objectRendering.Death();
+        }
     }
 
     @Override

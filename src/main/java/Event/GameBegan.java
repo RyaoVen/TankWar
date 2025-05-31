@@ -20,7 +20,7 @@ public class GameBegan {
 
         bulletGiving = new BulletGiving();
         tank = tank_gamer_giving.TankGet();
-        this.ai = new AITank();
+        this.ai = new AITank(tank,frame);
         ObjectRendering tank_rendering = new ObjectRendering(tank,frame);
         tank.ObjectRenderingSet(tank_rendering);
 
@@ -29,8 +29,13 @@ public class GameBegan {
 
 
         ObjectRendering ai_rendering = new ObjectRendering(ai,frame);
+        ai.ObjectRenderingSet(ai_rendering);
         ai_rendering.init();
         tank_rendering.init();
+
+        Thread ai_move = new Thread(ai::BeginMoving);
+        ai_move.start();
+
 
     }
 }

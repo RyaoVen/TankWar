@@ -2,6 +2,8 @@ package Object;
 
 import Rendering.ObjectRendering;
 
+import static java.lang.Thread.sleep;
+
 public class BulletObject extends GameObject{
     private int Damage;
     private int ExplosionRange;
@@ -11,15 +13,19 @@ public class BulletObject extends GameObject{
 
     //子弹移动函数
 
-    public String BulletMove(GameObject object){
-        if ((TouchWithScene(Width,Height)==null)|| TouchWithObject(object)==null){
-            return "BOOM";
-        }else {
+    public String BulletMove(GameObject object) throws InterruptedException {
+//
+           if(!(TouchWithScene(Width,Height).equals("NO"))){
+               return "BOOM With Scene";
+           }else if(!(TouchWithObject(object).equals("NO"))){
+               return "BOOM With Object";
+           }
+           else {
             switch (Direction){
-                case "UP": MoveUp();objectRendering.ReSet();break;
-                case "DOWN": MoveDown();objectRendering.ReSet();break;
-                case "LEFT": MoveLeft();objectRendering.ReSet();break;
-                case "RIGHT": MoveRight();objectRendering.ReSet();break;
+                case "Up": MoveUp();objectRendering.ReSet();Thread.sleep(5); break;
+                case "Down": MoveDown();objectRendering.ReSet();Thread.sleep(5);break;
+                case "Left": MoveLeft();objectRendering.ReSet();Thread.sleep(5);break;
+                case "Right": MoveRight();objectRendering.ReSet();Thread.sleep(5);break;
             }
         }
         return null;

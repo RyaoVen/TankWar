@@ -95,6 +95,9 @@ public class GameObject {
     public Color getColor(){
         return this.color;
     }
+    public String getDirection(){
+        return this.Direction;
+    }
 
 
     //移动函数
