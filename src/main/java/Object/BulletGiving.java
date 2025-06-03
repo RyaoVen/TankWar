@@ -3,7 +3,6 @@ package Object;
 import java.awt.*;
 
 public class BulletGiving {
-    private BulletObject bullet;
     private int BulletKind;
 
     public BulletGiving() {
@@ -11,79 +10,34 @@ public class BulletGiving {
     BulletKind = 1;
     }
 
+
     public BulletObject BulletGet(){
-        if(bullet == null){
             switch (BulletKind){
                 case 1:InitKindTow();break;
                 case 2:InitKindThree();break;
                 case 3:InitKindOne();break;
             }
-        }
-        return bullet;
+            return InitKindOne();
+
     }
 
     public void TruncateBullet(){
         switch (BulletKind){
-            case 1:InitKindTow();BulletKind = 2;break;
-            case 2:InitKindThree();BulletKind = 3;break;
-            case 3:InitKindOne();BulletKind = 1;break;
+            case 1:BulletKind = 2;break;
+            case 2:BulletKind = 3;break;
+            case 3:BulletKind = 1;break;
         }
     }
 
-    private void InitKindOne(){
-
-        if(!(bullet == null)){
-            bullet = null;
-        }
-
-        bullet = new BulletObject();
-
-        bullet.SetColor(Color.orange);
-        bullet.SetHeight(5);
-        bullet.SetWidth(5);
-        bullet.SetSpeed(5);
-        bullet.SetDamage(5);
-        bullet.SetReLoadingTime(100);
-        bullet.SetExplosionRange(8);
-        bullet.SetIsLive(true);
-
+    private BulletObject InitKindOne(){
+return new BulletObject(Color.orange,5,5,5,5,100,8,true);
     }
 
-    private void InitKindTow(){
-
-        if(!(bullet == null)){
-            bullet = null;
-        }
-
-        bullet = new BulletObject();
-
-        bullet.SetColor(Color.YELLOW);
-        bullet.SetHeight(8);
-        bullet.SetWidth(8);
-        bullet.SetSpeed(8);
-        bullet.SetDamage(10);
-        bullet.SetReLoadingTime(250);
-        bullet.SetExplosionRange(12);
-        bullet.SetIsLive(true);
-
+    private BulletObject InitKindTow(){
+return new BulletObject(Color.YELLOW,8,8,8,10,250,12,true);
     }
 
-    private void InitKindThree(){
-
-        if(!(bullet == null)){
-            bullet = null;
-        }
-
-        bullet = new BulletObject();
-
-        bullet.SetColor(Color.red);
-        bullet.SetHeight(10);
-        bullet.SetWidth(10);
-        bullet.SetSpeed(12);
-        bullet.SetDamage(25);
-        bullet.SetReLoadingTime(1000);
-        bullet.SetExplosionRange(20);
-        bullet.SetIsLive(true);
-
+    private BulletObject InitKindThree(){
+return new BulletObject(Color.red,10,10,12,25,1000,20,true);
     }
 }

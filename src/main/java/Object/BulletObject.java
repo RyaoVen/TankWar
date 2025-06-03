@@ -2,6 +2,8 @@ package Object;
 
 import Rendering.ObjectRendering;
 
+import java.awt.*;
+
 import static java.lang.Thread.sleep;
 
 public class BulletObject extends GameObject{
@@ -12,10 +14,20 @@ public class BulletObject extends GameObject{
     private ObjectRendering objectRendering;
 
     //子弹移动函数
+    public BulletObject(Color color, int height,int width,int speed,int damage , int reLoadingTime , int SetExplosionRange, boolean isLive){
+        SetColor(color);
+        SetHeight(height);
+        SetWidth(width);
+        SetSpeed(speed);
+        SetDamage(damage);
+        SetReLoadingTime(reLoadingTime);
+        SetExplosionRange(SetExplosionRange);
+        SetIsLive(isLive);
+    }
 
     public String BulletMove(GameObject object) throws InterruptedException {
 //
-           if(!(TouchWithScene(Width,Height).equals("NO"))){
+           if(!(TouchWithScene(1200,800).equals("NO"))){
                return "BOOM With Scene";
            }else if(!(TouchWithObject(object).equals("NO"))){
                return "BOOM With Object";
@@ -28,12 +40,14 @@ public class BulletObject extends GameObject{
                 case "Right": MoveRight();objectRendering.ReSet();Thread.sleep(5);break;
             }
         }
-        return null;
+        return "NO";
     }
 
     public void ObjectRenderingSet(ObjectRendering objectRendering){
         this.objectRendering = objectRendering;
     }
+
+
 
     @Override
     public int getOthers(){
