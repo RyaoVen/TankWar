@@ -110,7 +110,7 @@ public class ShootEvent {
 
                         // 处理伤害结算
                         if (boom.contains("Object")) {
-                            tank.HealthChange(bullet);
+                            ai.HealthChange(bullet);
                         }
 
                         // 显示爆炸效果
